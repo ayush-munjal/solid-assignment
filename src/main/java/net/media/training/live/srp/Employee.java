@@ -1,4 +1,6 @@
 package net.media.training.live.srp;
+// create a print function separetly 
+
 
 class Leaves{
     // created a new class for calculating the number of leaves left
