@@ -34,7 +34,8 @@ public class Employee {
     public Employee() {
     }
 
-    public String toHtml() {
+    private String OrigString(){
+        // added the code for original string in this function
         String str = "<div>" +
                 "<h1>Employee Info</h1>" +
                 "<div id='emp" + empId + "'>" +
@@ -47,18 +48,44 @@ public class Employee {
                 "</div>";
         str += "<div class='right'><span>" + (totalLeaveAllowed - leaveTaken) + "</span>";
         str += "<span>" + Math.round(monthlySalary * 12) + "</span>";
-        if (manager != null) str += "<span>" + manager + "</span>";
-        else str += "<span>None</span>";
+        return str;
+    }
+
+    private String isManager(String str){
+        // added the code for manager string in this function
+        if (manager != null) 
+            str += "<span>" + manager + "</span>";
+        else 
+            str += "<span>None</span>";
+        return str;
+    }
+
+    private int numYears(){
+        // added the code for number of years in this function
         int years = 3;
         if (yearsInOrg < 3) {
             years = yearsInOrg;
         }
+        return years;
+    }
+
+    private String prevLeaves(String str, int years){
+        // added the code for prevLeaves in this function
         int totalLeaveLeftPreviously = 0;
         for (int i = 0; i < years; i++) {
             totalLeaveLeftPreviously += leavesLeftPreviously[yearsInOrg-i-1];
         }
         str += "<span>" + totalLeaveLeftPreviously + "</span>";
         return str + "</div> </div>";
+    }
+
+    public String toHtml() {
+
+        String str = OrigString();
+        str = isManager(str);
+        int years = numYears();
+        return prevLeaves(str, years);
+
     }
     //other method related to customer
 }
