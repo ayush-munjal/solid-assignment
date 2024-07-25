@@ -38,15 +38,30 @@ class Leaves{
 }
 
 
+class address{
+    private String addressStreet;
+    private String addressCity;
+    private String addressCountry;
+    
+    public address(){
+
+    }
+
+    public address(String addressStreet, String addressCity, String addressCountry){
+        this.addressCity = addressCity;
+        this.addressCountry = addressCountry;
+        this.addressStreet = addressStreet;
+    }
+}
+
+
 public class Employee {
     private int empId;
     private static int TOTAL_LEAVES_ALLOWED = 30;
 
     private double monthlySalary;
     private String name;
-    private String addressStreet;
-    private String addressCity;
-    private String addressCountry;
+    
     private int leavesTaken;
     private int totalLeaveAllowed;
     private int leaveTaken;
@@ -56,14 +71,13 @@ public class Employee {
     private int[] leavesLeftPreviously;
 
     private Leaves leavesLeft;
+    private address Address;
 
     public Employee(int empId, double monthlySalary, String name, String addressStreet, String addressCity, String addressCountry, int leavesTaken, int[] leavesLeftPreviously) {
         this.empId = empId;
         this.monthlySalary = monthlySalary;
         this.name = name;
-        this.addressStreet = addressStreet;
-        this.addressCity = addressCity;
-        this.addressCountry = addressCountry;
+        this.Address = new address(addressStreet, addressCity,addressCountry);
         this.leavesTaken = leavesTaken;
         this.leavesLeftPreviously = leavesLeftPreviously;
         this.yearsInOrg = leavesLeftPreviously.length;
