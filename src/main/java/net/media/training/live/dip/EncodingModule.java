@@ -13,11 +13,18 @@ import java.util.Base64;
  * Time: 10:05:38 AM
  * To change this template use File | Settings | File Templates.
  */
+
+
+// create two different classes one for files and for database
+// create an interface with read, write, encoding functions
+// hardcoding of file paths
+// can create interface for read and write also (ans)
+
 public class EncodingModule {
     public void encodeWithFiles() {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("/Users/goyalamit/Sandbox/training/src/solid_2011/live/dip/beforeEncryption.txt"));
-            BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/goyalamit/Sandbox/training/src/solid_2011/live/dip/afterEncryption.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("src/main/java/net/media/training/live/dip/beforeEncryption.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/net/media/training/live/dip/afterEncryption.txt"));
             String aLine;
             while ((aLine = reader.readLine()) != null) {
                 String encodedLine = Base64.getEncoder().encodeToString(aLine.getBytes());

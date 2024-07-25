@@ -6,5 +6,4 @@ package net.media.training.live.ocp;
 public abstract class Resource {
     public abstract int allocate();
     public abstract void free(int resourceId);
-
 }
