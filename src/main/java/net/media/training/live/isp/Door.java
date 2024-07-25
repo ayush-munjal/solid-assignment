@@ -8,8 +8,6 @@ package net.media.training.live.isp;
  * To change this template use File | Settings | File Templates.
  */
 
-// Dont extend SensorClient and TimerClient in door as we dont need
-// those functions in SensingDoor and TimedDoor later
 public interface Door{
     void lock();
     void unlock();
