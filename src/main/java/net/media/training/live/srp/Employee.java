@@ -1,5 +1,40 @@
 package net.media.training.live.srp;
 
+class Leaves{
+    // created a new class for calculating the number of leaves left
+    private int yearsInOrg;
+    private int[] leavesLeftPreviously;
+
+    public Leaves(){
+
+    }
+
+    public Leaves(int yearsInOrg, int[] leavesLeftPreviously){
+        this.yearsInOrg = yearsInOrg;
+        this.leavesLeftPreviously = leavesLeftPreviously;
+    }
+
+    private int numYears(){
+        // added the code for number of years in this function
+        int years = 3;
+        if (yearsInOrg < 3) {
+            years = yearsInOrg;
+        }
+        return years;
+    }
+
+    public int prevLeavesLeft(){
+        // added the code for prevLeaves in this function
+        int years = numYears();
+        int totalLeaveLeftPreviously = 0;
+        for (int i = 0; i < years; i++) {
+            totalLeaveLeftPreviously += leavesLeftPreviously[yearsInOrg-i-1];
+        }
+        return totalLeaveLeftPreviously;
+    }
+
+}
+
 
 public class Employee {
     private int empId;
@@ -18,6 +53,7 @@ public class Employee {
     private int thisYeard;
     private int[] leavesLeftPreviously;
 
+    private Leaves leavesLeft;
 
     public Employee(int empId, double monthlySalary, String name, String addressStreet, String addressCity, String addressCountry, int leavesTaken, int[] leavesLeftPreviously) {
         this.empId = empId;
@@ -29,6 +65,7 @@ public class Employee {
         this.leavesTaken = leavesTaken;
         this.leavesLeftPreviously = leavesLeftPreviously;
         this.yearsInOrg = leavesLeftPreviously.length;
+        this.leavesLeft = new Leaves(yearsInOrg, leavesLeftPreviously);
     }
 
     public Employee() {
@@ -60,31 +97,13 @@ public class Employee {
         return str;
     }
 
-    private int numYears(){
-        // added the code for number of years in this function
-        int years = 3;
-        if (yearsInOrg < 3) {
-            years = yearsInOrg;
-        }
-        return years;
-    }
-
-    private String prevLeaves(String str, int years){
-        // added the code for prevLeaves in this function
-        int totalLeaveLeftPreviously = 0;
-        for (int i = 0; i < years; i++) {
-            totalLeaveLeftPreviously += leavesLeftPreviously[yearsInOrg-i-1];
-        }
-        str += "<span>" + totalLeaveLeftPreviously + "</span>";
-        return str + "</div> </div>";
-    }
-
     public String toHtml() {
 
         String str = OrigString();
         str = isManager(str);
-        int years = numYears();
-        return prevLeaves(str, years);
+        int numberOfleavesLeft = this.leavesLeft.prevLeavesLeft();
+        str += "<span>" + numberOfleavesLeft + "</span>";
+        return str + "</div> </div>";
 
     }
     //other method related to customer
